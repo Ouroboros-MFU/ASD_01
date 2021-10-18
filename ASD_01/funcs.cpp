@@ -12,6 +12,7 @@ myString::myString(const char* str)
 }
 myString::myString(int size)
 {
+	if (size < 0) throw "INVALID_SIZE!";
 	len = size;
 	arr = new char[len + 1];
 }
@@ -44,6 +45,7 @@ bool myString::operator==(const myString& a)
 }
 char& myString::operator[](int index)
 {
+	if (index < 0 || index > len) throw "INVALID_INDEX!";
 	return arr[index];
 }
 
@@ -59,6 +61,7 @@ myString myString::operator+(const myString& str)
 }
 myString myString::operator*(int value)
 {
+	if (value <= 0) throw "INVALID_MULTIPLIER!";
 	unsigned int lenght = value * len;
 	myString res(lenght + 1);
 	if (nullptr != arr) strcpy(res.arr, arr);
@@ -71,30 +74,30 @@ myString myString::operator*(int value)
 	res.arr[lenght] = '\0';
 	return res;
 }
-myString& myString::operator*=(int value)
-{
-	if (value == 1) return *this;
-	char* res = new char[value * len + 1];
-	if (nullptr != arr) strcpy(res, arr);
-	if (arr) free(arr);
-	len = value * len;
-	arr = new char[len + 1];
-	int count = 0;
-	for (int i = 0; i < value;i++)
-	{
-		for (int j = 0;j < len / value;j++, count++)
-		{
-			arr[count] = res[j];
-		}
-	}
-	arr[len] = '\0';
-	delete[]res;
-	return *this;
-}
+//myString& myString::operator*=(int value)
+//{
+//	if (value == 1) return *this;
+//	char* res = new char[value * len + 1];
+//	if (nullptr != arr) strcpy(res, arr);
+//	if (arr) free(arr);
+//	len = value * len;
+//	arr = new char[len + 1];
+//	int count = 0;
+//	for (int i = 0; i < value;i++)
+//	{
+//		for (int j = 0;j < len / value;j++, count++)
+//		{
+//			arr[count] = res[j];
+//		}
+//	}
+//	arr[len] = '\0';
+//	delete[]res;
+//	return *this;
+//}
 myString& myString::operator=(const myString& a)
 {
 	if (this == &a) return *this;
-	if (arr) free(arr);
+	if (arr) delete[]arr;
 	len = a.len;
 	arr = new char[len + 1];
 	for (int i = 0; i < len;i++)
@@ -121,15 +124,15 @@ myString& myString::operator=(const myString& a)
 
 myString myString::getSubString(int index, int lenght)
 {
-	if (index < 0 && lenght <= 0) throw "INVALID_INDEX_OR_LENGHT";
-	char* res = (char*)malloc(lenght+1);
+	if (index < 0 || lenght <= 0 || lenght>len-index) throw "INVALID_INDEX_OR_LENGHT";
+	char* res = new char[lenght+1];
 	for (int i = 0; i < lenght; i++)
 	{
 		res[i] = arr[i+index];
 	}
 	res[lenght] = '\0';
 	myString result(res);
-	free(res);
+	delete[]res;
 	return result;
 }
 void myString::print()
@@ -142,6 +145,7 @@ int myString::getLenght()
 }
 myString operator*(int value, myString& a)
 {
+	if (value < 0) throw "INVALID_MULTIPLIER!";
 	return a * value;
 }
 std::ostream& operator<< (std::ostream& out, const myString& a)
