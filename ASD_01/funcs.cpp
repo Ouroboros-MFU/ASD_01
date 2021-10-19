@@ -31,7 +31,7 @@ myString::~myString()
 	len = 0;
 	delete[]arr;
 }
-bool myString::operator==(const myString& a)
+bool myString::operator==(const myString& a)const
 {
 	if (len != a.len) return false;
 	else
@@ -49,7 +49,7 @@ char& myString::operator[](int index)
 	return arr[index];
 }
 
-myString myString::operator+(const myString& str)
+myString myString::operator+(const myString& str)const
 {
 	int lenght = len + strlen(str.arr);
 	char* res = new char[lenght+1];
@@ -59,7 +59,7 @@ myString myString::operator+(const myString& str)
 	delete[]res;
 	return result;
 }
-myString myString::operator*(int value)
+myString myString::operator*(int value)const
 {
 	if (value <= 0) throw "INVALID_MULTIPLIER!";
 	unsigned int lenght = value * len;
@@ -74,26 +74,6 @@ myString myString::operator*(int value)
 	res.arr[lenght] = '\0';
 	return res;
 }
-//myString& myString::operator*=(int value)
-//{
-//	if (value == 1) return *this;
-//	char* res = new char[value * len + 1];
-//	if (nullptr != arr) strcpy(res, arr);
-//	if (arr) free(arr);
-//	len = value * len;
-//	arr = new char[len + 1];
-//	int count = 0;
-//	for (int i = 0; i < value;i++)
-//	{
-//		for (int j = 0;j < len / value;j++, count++)
-//		{
-//			arr[count] = res[j];
-//		}
-//	}
-//	arr[len] = '\0';
-//	delete[]res;
-//	return *this;
-//}
 myString& myString::operator=(const myString& a)
 {
 	if (this == &a) return *this;
@@ -122,7 +102,7 @@ myString& myString::operator=(const myString& a)
 //	return *this;
 //}
 
-myString myString::getSubString(int index, int lenght)
+myString myString::getSubString(int index, int lenght)const
 {
 	if (index < 0 || lenght <= 0 || lenght>len-index) throw "INVALID_INDEX_OR_LENGHT";
 	char* res = new char[lenght+1];

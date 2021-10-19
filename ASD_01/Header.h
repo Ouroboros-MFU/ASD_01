@@ -9,14 +9,12 @@ public:
 	myString(int size);
 	myString(const myString& str);
 	char& operator[](int index);
-	bool operator==(const myString& a);
-	myString operator+(const myString& a);
-	myString operator*(int value);
-	myString& operator*=(int value);
+	bool operator==(const myString& a)const;
+	myString operator+(const myString& a)const;
+	myString operator*(int value)const;
 	myString& operator=(const myString& a);
 	//myString& operator+=(const myString& a);////можно доделать
-	
-	myString getSubString(int index, int lengh);
+	myString getSubString(int index, int lengh)const;
 	void print();
 	int getLenght();
 	~myString();

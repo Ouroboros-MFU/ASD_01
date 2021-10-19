@@ -10,11 +10,11 @@ int main()
 		char buffer[100];
 		cin.getline(buffer, 100);
 		myString a(buffer);
-		cout << "Your string is: " << a << endl << endl;
 		int change = 1;
 		while (change)
 		{
 			int key = 0;
+			system("cls");
 			cout << " Choose what you want to do:\n 1) Read/write a symbol by index.\n 2) Concatenate strings.\n 3) Multiplicate string.\n 4) Get substring by index and lenght\n 5) Compare strings.\n 6) Print string.\n 7) Exit.\n";
 			cin >> key;
 			change = 0;
@@ -32,6 +32,7 @@ int main()
 				{
 				case 1:
 				{
+					system("cls");
 					cout << "Symbol [" << index << "] is: " << a[index] << endl;
 					change = 1;
 					break;
@@ -43,6 +44,9 @@ int main()
 					cin >> s;
 					a[index] = s;
 					change = 1;
+					system("cls");
+					cout << " Complete!\n";
+					system("pause");
 					break;
 				}
 
@@ -61,7 +65,7 @@ int main()
 				system("cls");
 				char bufferB[100];
 				cout << " Concatenate strings.\n ____________________\n\n Enter catenate string: ";
-				cin.getline(bufferB, 100);
+				cin >> bufferB;
 				cout << endl << endl;
 				myString b(bufferB);
 				myString sum(a + b);
@@ -101,8 +105,8 @@ int main()
 			{
 				system("cls");
 				char bufferB[100];
-				cin.getline(bufferB, 100);
 				cout << " Compare strings.\n ________________\n\n Enter comparing string: ";
+				cin >> bufferB;
 				cout << endl;
 				myString b(bufferB);
 				cout << "Strings are equal: " << (a==b);
