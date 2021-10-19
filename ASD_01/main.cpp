@@ -14,7 +14,7 @@ int main()
 		while (change)
 		{
 			int key = 0;
-			system("cls");
+			//system("cls");
 			cout << " Choose what you want to do:\n 1) Read/write a symbol by index.\n 2) Concatenate strings.\n 3) Multiplicate string.\n 4) Get substring by index and lenght\n 5) Compare strings.\n 6) Print string.\n 7) Exit.\n";
 			cin >> key;
 			change = 0;
