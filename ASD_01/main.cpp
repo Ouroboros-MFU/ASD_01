@@ -155,13 +155,12 @@ int main()
 			{
 				return 0;
 			}
-			//default: 
-			//{
-			//	system("cls");
-			//	cout << "Error choice! Try again!" << endl;
-			//	//cin >> key;
-			//	change = 1;
-			//}
+			default: 
+			{
+				system("cls");
+				cout << "Error choice! Try again!" << endl;
+				change = 1;
+			}
 			}
 		}*/
 	}
