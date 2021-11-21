@@ -1,4 +1,5 @@
 #include <iostream>
+#include "funcs.cpp"
 #include "Header.h"
 using namespace std;
 
@@ -6,7 +7,36 @@ int main()
 {
 	try
 	{
-		cout << "Enter your string: ";
+		int num[] = { 5, 1, 2 };
+		myString<int> a(num, 3);
+		a.print();
+
+		int num1[] = { 1, 2, 3, 4 };
+		myString<int> b(num1, 4);
+		b.print();
+
+		myString<char> c("abcde", 5);
+		c.print();
+
+		a = b;
+		a.print();
+
+		a(0, 2).print();
+		a.print();
+
+		a[2] = 10;
+		cout << a[2] << endl;
+		a.print();
+
+		(4*a).print();
+		(a + b).print();
+		cout << b << endl;
+
+
+
+
+
+		/*cout << "Enter your string: ";
 		char buffer[100];
 		cin.getline(buffer, 100);
 		myString a(buffer);
@@ -14,7 +44,7 @@ int main()
 		while (change)
 		{
 			int key = 0;
-			system("cls");
+			//system("cls");
 			cout << " Choose what you want to do:\n 1) Read/write a symbol by index.\n 2) Concatenate strings.\n 3) Multiplicate string.\n 4) Get substring by index and lenght\n 5) Compare strings.\n 6) Print string.\n 7) Exit.\n";
 			cin >> key;
 			change = 0;
@@ -108,7 +138,7 @@ int main()
 				cout << " Compare strings.\n ________________\n\n Enter comparing string: ";
 				cin >> bufferB;
 				cout << endl;
-				myString b(bufferB);
+				myString<char> b(bufferB);
 				cout << "Strings are equal: " << (a==b);
 				change = 1;
 				break;
@@ -133,7 +163,7 @@ int main()
 			//	change = 1;
 			//}
 			}
-		}
+		}*/
 	}
 	catch (const char* ex)
 	{
